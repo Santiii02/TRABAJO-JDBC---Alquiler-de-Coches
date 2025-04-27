@@ -1,4 +1,4 @@
-# Aplicaciones_Bases_de_Datos
+# Aplicaciones_Bases_de_Datos: Trabajo JDBC - Alquiler_de_Coches
 Repositorio de GitHub para la asignatura Aplicaciones de Bases de Datos, Ingeniería Informática, UBU.
 <br><br>
 
