@@ -14,6 +14,12 @@ import org.slf4j.LoggerFactory;
 import lsi.ubu.excepciones.AlquilerCochesException;
 import lsi.ubu.util.PoolDeConexiones;
 
+/**
+ * @author <a> Alberto Lanchares Diez</a>
+ * @author <a> Andres Puentes Gonzalez</a>
+ * @author <a> Santiago Infante Ramos</a>
+ */
+
 public class ServicioImpl implements Servicio {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServicioImpl.class);
 
@@ -27,9 +33,6 @@ public class ServicioImpl implements Servicio {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		/*
-		 * El calculo de los dias se da hecho
-		 */
 		long diasDiff = DIAS_DE_ALQUILER; 
 		if (fechaFin != null) {
 		    diasDiff = TimeUnit.MILLISECONDS.toDays(fechaFin.getTime() - fechaIni.getTime());
@@ -53,26 +56,6 @@ public class ServicioImpl implements Servicio {
 
 			/* A completar por el alumnado... */
 
-			/* ================================= AYUDA R�PIDA ===========================*/
-			/*
-			 * Algunas de las columnas utilizan tipo numeric en SQL, lo que se traduce en
-			 * BigDecimal para Java.
-			 * 
-			 * Convertir un entero en BigDecimal: new BigDecimal(diasDiff)
-			 * 
-			 * Sumar 2 BigDecimals: usar metodo "add" de la clase BigDecimal
-			 * 
-			 * Multiplicar 2 BigDecimals: usar metodo "multiply" de la clase BigDecimal
-			 *
-			 * 
-			 * Paso de util.Date a sql.Date java.sql.Date sqlFechaIni = new
-			 * java.sql.Date(sqlFechaIni.getTime());
-			 *
-			 *
-			 * Recuerda que hay casos donde la fecha fin es nula, por lo que se debe de
-			 * calcular sumando los dias de alquiler (ver variable DIAS_DE_ALQUILER) a la
-			 * fecha ini.
-			 */
 			con.setAutoCommit(false); // Iniciamos transacción
 
 			// Verificar existencia del vehículo

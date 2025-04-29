@@ -31,6 +31,12 @@ public class AlquilerCochesException extends SQLException {
 
 	public AlquilerCochesException(int code) {
 
+	/**
+	 * @author <a> Alberto Lanchares Diez</a>
+	 * @author <a> Andres Puentes Gonzalez</a>
+	 * @author <a> Santiago Infante Ramos</a>
+	 */
+
 		this.codigo = code;
 	    switch(code) {
 	        case CLIENTE_NO_EXIST:
