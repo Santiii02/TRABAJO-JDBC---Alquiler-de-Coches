@@ -75,7 +75,7 @@ public class ServicioImpl implements Servicio {
 			 */
 			con.setAutoCommit(false); // Iniciamos transacción
 
-			// 1. Verificar existencia del vehículo
+			// Verificar existencia del vehículo
 			pstmt = con.prepareStatement("SELECT 1 FROM Vehiculos WHERE matricula = ?");
 			pstmt.setString(1, matricula);
 			rs = pstmt.executeQuery();
@@ -83,7 +83,7 @@ public class ServicioImpl implements Servicio {
 			    throw new AlquilerCochesException(2);
 			}
 
-			// 2. Verificar existencia del cliente
+			// Verificar existencia del cliente
 			pstmt = con.prepareStatement("SELECT 1 FROM Clientes WHERE NIF = ?");
 			pstmt.setString(1, nifCliente);
 			rs = pstmt.executeQuery();
@@ -91,7 +91,7 @@ public class ServicioImpl implements Servicio {
 			    throw new AlquilerCochesException(1);
 			}
 
-	        // 4. Verificar disponibilidad del vehículo
+	        // Verificar disponibilidad del vehículo
 	        pstmt = con.prepareStatement(" SELECT 1 FROM Reservas WHERE matricula = ? AND ((fecha_ini BETWEEN ? AND ?) OR (fecha_fin BETWEEN ? AND ?) OR (? BETWEEN fecha_ini AND fecha_fin))");
 	        
 	        pstmt.setString(1, matricula);
@@ -106,7 +106,7 @@ public class ServicioImpl implements Servicio {
 	            throw new AlquilerCochesException(4);
 	        }
 
-	        // 5. Insertar reserva
+	        // Insertar reserva
 	        pstmt = con.prepareStatement("INSERT INTO Reservas(idReserva, cliente, matricula, fecha_ini, fecha_fin) VALUES (seq_reservas.NEXTVAL, ?, ?, ?, ?)");
 	        
 	        pstmt.setString(1, nifCliente);
@@ -118,7 +118,7 @@ public class ServicioImpl implements Servicio {
 	            pstmt.setNull(4, java.sql.Types.DATE); // Insertar null en fecha_fin
 	        }	        pstmt.executeUpdate();
 
-	        // 6. Generar factura (requerido para pasar los tests)
+	        // Generar factura (requerido para pasar los tests)
 	        pstmt = con.prepareStatement(
 	        	    "SELECT m.id_modelo, m.precio_cada_dia, m.capacidad_deposito, pc.precio_por_litro, pc.tipo_combustible " +
 	        	    "FROM Modelos m " +
